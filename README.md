@@ -39,6 +39,27 @@ This project contains the following modular, reusable components:
 - Copyright notice
 - Responsive layout
 
+### 6. **SearchModal** (`src/components/SearchModal.jsx`)
+- Full-featured search modal dialog
+- Auto-focus on input
+- Clear button for quick reset
+- Popular topic suggestions
+- Keyboard shortcuts (Escape to close)
+- Fully accessible with ARIA attributes
+
+### 7. **ScrollToTop** (`src/components/ScrollToTop.jsx`)
+- Floating button to scroll to page top
+- Appears after scrolling 300px
+- Smooth scroll animation
+- Keyboard accessible
+- Mobile responsive
+
+### 8. **LoadingSkeleton** (`src/components/LoadingSkeleton.jsx`)
+- Skeleton screen placeholders
+- Shimmer loading animation
+- Configurable card count
+- Respects reduced motion preferences
+
 ## Installation
 
 ```bash
@@ -130,12 +151,25 @@ You can customize the styling by modifying the CSS files or overriding the CSS v
 
 ## Features
 
+### Core Features
 - **Fully Responsive** - Mobile-first design with breakpoints at 640px, 768px, and 1024px
 - **Modern React** - Uses functional components and hooks
-- **Accessible** - Semantic HTML and ARIA labels
-- **Performance** - Optimized with CSS transitions and minimal re-renders
 - **Modular** - Each component is self-contained and reusable
 - **Clean Code** - Well-structured and commented
+- **Performance** - Optimized with CSS transitions and minimal re-renders
+
+### Usability & Accessibility
+- **WCAG 2.1 Level AA Compliant** - Meets international accessibility standards
+- **Keyboard Navigation** - Full keyboard support with visible focus indicators
+- **Screen Reader Friendly** - Proper ARIA labels and semantic HTML
+- **Mobile Menu** - Responsive hamburger menu with smooth animations
+- **Search Functionality** - Modal search with keyboard shortcuts
+- **Loading States** - Skeleton screens with shimmer animations
+- **Scroll to Top** - Smooth scroll button appears after 300px
+- **Skip to Content** - Quick navigation for keyboard and screen reader users
+- **Touch Optimized** - Minimum 44x44px touch targets for mobile
+
+See [USABILITY.md](./USABILITY.md) for detailed documentation on all accessibility and usability features.
 
 ## Browser Support
 

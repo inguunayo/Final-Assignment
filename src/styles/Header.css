@@ -1,3 +1,21 @@
+/* Skip to main content link */
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem 1.5rem;
+  background-color: #0066cc;
+  color: white;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  font-weight: 600;
+}
+
+.skip-to-main:focus {
+  left: 0;
+  top: 0;
+}
+
 .header {
   background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
@@ -15,6 +33,22 @@
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  position: relative;
+}
+
+.logo {
+  z-index: 1001;
+}
+
+.logo a {
+  display: inline-block;
+  line-height: 0;
+}
+
+.logo a:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .logo img {
@@ -42,16 +76,39 @@
   transition: color 0.2s ease;
   padding: 0.5rem 0;
   display: block;
+  position: relative;
 }
 
 .nav-list li a:hover {
   color: #0066cc;
 }
 
+.nav-list li a:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+.nav-list li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #0066cc;
+  transition: width 0.3s ease;
+}
+
+.nav-list li a:hover::after {
+  width: 100%;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
   gap: 1rem;
+  z-index: 1001;
 }
 
 .search-btn {
@@ -60,14 +117,21 @@
   cursor: pointer;
   padding: 0.5rem;
   color: #4b5563;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 4px;
 }
 
 .search-btn:hover {
   color: #0066cc;
+  background-color: #f3f4f6;
+}
+
+.search-btn:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
 }
 
 .language-switcher {
@@ -87,15 +151,93 @@
   color: #4b5563;
   cursor: pointer;
   transition: all 0.2s ease;
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .lang-btn:hover {
   background: #f3f4f6;
 }
 
+.lang-btn:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: -2px;
+  z-index: 1;
+}
+
 .lang-btn.active {
   background: #0066cc;
   color: #ffffff;
+}
+
+/* Mobile menu button */
+.mobile-menu-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.mobile-menu-btn:hover {
+  background-color: #f3f4f6;
+}
+
+.mobile-menu-btn:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.hamburger-line {
+  width: 100%;
+  height: 3px;
+  background-color: #1f2937;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-menu-btn.open .hamburger-line:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile menu overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -110,10 +252,62 @@
   .nav-list li a {
     font-size: 0.875rem;
   }
+
+  .mobile-menu-btn {
+    display: flex;
+  }
+
+  .main-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background-color: #ffffff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 1000;
+    padding: 5rem 2rem 2rem;
+    overflow-y: auto;
+  }
+
+  .main-nav.mobile-open {
+    right: 0;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-list li {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .nav-list li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-list li a {
+    padding: 1rem 0;
+    font-size: 1rem;
+    display: block;
+  }
 }
 
 @media (max-width: 640px) {
-  .main-nav {
-    display: none;
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .search-btn {
+    padding: 0.4rem;
+  }
+
+  .lang-btn {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.8125rem;
+    min-width: 40px;
+    min-height: 40px;
   }
 }
